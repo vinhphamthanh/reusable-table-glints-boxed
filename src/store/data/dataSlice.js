@@ -4,6 +4,7 @@ const initialState = {
   data: [],
   searchData: [],
   loading: false,
+  isSearching: false,
   error: null,
   totalPage: 1,
 };
