@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { DATA_TYPES } from '../../constants/http';
+import { dataActions } from '../../store/data/reducer/dataSlice';
 import styled from 'styled-components';
-// import { useAppDispatch, useAppSelector } from '../utils/hooks';
-// import { searchActions } from '../store/search/searchSaga';
 
 const Container = styled.form`
   width: 100%;
@@ -32,8 +33,8 @@ const Clear = styled.button`
 	
 `
 export const Search = () => {
+  const dispatch = useDispatch();
   const [text, setText] = useState('')
-  // const dispatch = useAppDispatch();
   const handleChange = evt => {
     const { value } = evt.target;
     setText(() => value)
@@ -41,13 +42,12 @@ export const Search = () => {
 
   const handleClear = () => {
     setText(() => '')
-    // dispatch(searchActions.reset())
+    dispatch(dataActions.searchClearStart())
   }
   const handleSubmit = evt => {
     evt.preventDefault();
     if (!text) return;
-    //@ts-ignore
-    // dispatch(searchActions.search({ q: text }))
+    dispatch(dataActions.searchDataStart({ q: text, type: DATA_TYPES.POSTS }))
   }
 
   return (

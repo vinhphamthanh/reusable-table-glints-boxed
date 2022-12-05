@@ -19,8 +19,8 @@ const TableContainer = styled.table`
 
 export const Table = ({
   data,
+  searchData,
 }) => {
-  const searchData = [];
   const [headData, bodyData] = useMemo(() => {
     let dataHead = [], dataBody = [];
     if (searchData.length > 0) {

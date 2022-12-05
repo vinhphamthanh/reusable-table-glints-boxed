@@ -18,13 +18,13 @@ const Page = styled.span`
 	font-size: 12px;
 	color: ${({ active }) => active ? 'red' : 'inherit'}
 `
-export const Paging = ({ onNavigate, page, totalPage, isVisible }) => {
+export const Paging = ({ onPaging, page, totalPage, isVisible }) => {
   const handleBack = () => {
-    onNavigate(-1)
+    onPaging(-1)
   }
 
   const handleNext = () => {
-    onNavigate(1)
+    onPaging(1)
   };
 
   return isVisible && (
