@@ -3,13 +3,22 @@ import styled from 'styled-components';
 
 const Title = styled.p`
   width: 100%;
-  font-size: 28px;
+  ${({ small }) => {
+    if (small) {
+      return `
+        font-size: 20px;
+        color: dodgerblue;
+      `
+    }
+    
+    return `
+      font-size: 28px;
+      color: darkmagenta;
+    `
+  }};
   font-weight: bold;
 `
 
-const Heading = ({ children }) => {
-  console.log('Rerender me????')
-  return (<Title>{children}</Title>)
-}
+const Heading = ({ children, small }) => (<Title small={small}>{children}</Title>)
 
 export default memo(Heading);

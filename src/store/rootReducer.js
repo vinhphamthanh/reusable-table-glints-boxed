@@ -1,6 +1,8 @@
-import tableReducer from './data/reducer/dataSlice'
 import { combineReducers } from 'redux';
+import jsonReducer from './json/jsonSlice';
+import dataReducer from './data/dataSlice';
 
 export default combineReducers({
-  data: tableReducer,
-})
+  data: dataReducer,
+  json: jsonReducer,
+});

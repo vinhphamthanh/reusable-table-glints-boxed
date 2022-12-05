@@ -37,11 +37,11 @@ const dataSlice = createSlice({
     searchClearStart(state) {
       state.loading = true;
     },
-    searchClearSuccess(state) {
+    searchClearDone(state) {
       state.loading = false;
       state.searchData = [];
       state.isSearching = false;
-    }
+    },
   }
 })
 

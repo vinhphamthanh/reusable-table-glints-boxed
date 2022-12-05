@@ -1,7 +1,7 @@
 import { memo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { DATA_TYPES } from '../../constants/http';
-import { dataActions } from '../../store/data/reducer/dataSlice';
+import { dataActions } from '../../store/data/dataSlice';
 import styled from 'styled-components';
 
 const Container = styled.form`

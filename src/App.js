@@ -12,9 +12,11 @@ import Heading from './components/common/Heading';
 import Loading from './components/common/Loading';
 import Paging from './components/common/Paging';
 import Search from './components/common/Search';
+import RawJson from './components/RawJson';
 import { Table } from './components/table/Table';
 import { DATA_TYPES } from './constants/http';
-import { dataActions } from './store/data/reducer/dataSlice';
+import { dataActions } from './store/data/dataSlice';
+import { jsonActions } from './store/json/jsonSlice';
 import { GlobalStyle } from './styles/global';
 
 const AppContainer = styled.div`
@@ -37,20 +39,27 @@ function App() {
 
   const handlePaging = useCallback(step => {
     setPage(prev => prev + step);
-  }, []);
+    dispatch(jsonActions.checkDataStart({}))
+  }, [dispatch, setPage]);
+
+  const handleCheckData = index => evt => {
+    const { checked } = evt.target;
+    dispatch(jsonActions.checkDataStart({ [index]: checked }))
+  }
 
   return (
     <AppContainer>
       <GlobalStyle />
       <Heading>Custom Reusable Table - Glints - BOXED</Heading>
       <Search />
-      <Table data={data.data} searchData={data.searchData} />
+      <Table data={data.data} searchData={data.searchData} onCheck={handleCheckData} />
       <Paging
         totalPage={data.totalPage}
         page={page}
         onPaging={handlePaging}
         isVisible={!data.isSearching}
       />
+      <RawJson data={data.data} />
       <Loading loading={data.loading} />
     </AppContainer>
   );

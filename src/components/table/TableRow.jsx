@@ -1,6 +1,7 @@
 import { nanoid } from '@reduxjs/toolkit';
+import { memo } from 'react';
 import styled from 'styled-components';
-import { TableData } from './TableData';
+import TableCell from './TableCell';
 
 const WrappedTableRow = styled.tr`
   border-bottom: 1px solid aliceblue;
@@ -14,26 +15,22 @@ const CheckBox = styled.input`
   margin: 0;
 `;
 
-export const TableRow = ({
+const TableRow = ({
   data,
   onCheck,
-}) => {
-  const handleChange = evt => {
-    const { checked } = evt.target;
-    onCheck(checked);
-  };
-  return (
-    <WrappedTableRow>
-      <TableData>
-        <CheckBox type="checkbox" onChange={handleChange} />
-      </TableData>
-      {Array.isArray(data) && data.length > 0 && data.map((item, index) => (
-        <TableData key={nanoid()} pos={index}>
+}) => (
+  <WrappedTableRow>
+    <TableCell>
+      <CheckBox type="checkbox" onChange={onCheck} />
+    </TableCell>
+    {Array.isArray(data) && data.length > 0 && data.map((item, index) => (
+      <TableCell key={nanoid()} pos={index}>
           {typeof item === 'object' ?
             JSON.stringify(item) :
             item}
-        </TableData>
-      ))}
-    </WrappedTableRow>
-  );
-};
+        </TableCell>
+    ))}
+  </WrappedTableRow>
+);
+
+export default memo(TableRow)

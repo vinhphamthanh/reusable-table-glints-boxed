@@ -1,8 +1,8 @@
 import { nanoid } from '@reduxjs/toolkit';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import { TableHead } from './TableHead';
-import { TableRow } from './TableRow';
+import TableHead from './TableHead';
+import TableRow from './TableRow';
 
 const WrappedContainer = styled.div`
   display: flex;
@@ -20,6 +20,7 @@ const TableContainer = styled.table`
 export const Table = ({
   data,
   searchData,
+  onCheck,
 }) => {
   const [headData, bodyData] = useMemo(() => {
     let dataHead = [], dataBody = [];
@@ -34,9 +35,6 @@ export const Table = ({
     return [dataHead, dataBody];
   }, [data, searchData]);
 
-  const handleCheck = pos => value => {
-    // dispatch(jsonActions.setIndex({ [pos]: value }));
-  };
   return (
     <WrappedContainer>
       <TableContainer>
@@ -53,7 +51,7 @@ export const Table = ({
           headData?.length > 0
           && bodyData?.map(
             (item, index) => (
-             <TableRow key={nanoid()} data={item} onCheck={handleCheck(index)} />
+             <TableRow key={nanoid()} data={item} onCheck={onCheck(index)} />
             ))
         }
         </tbody>

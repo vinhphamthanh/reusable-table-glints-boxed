@@ -3,9 +3,9 @@ import {
   put,
   takeLatest,
 } from 'redux-saga/effects';
-import { fetchDataApi } from '../../../api/data';
-import { generateQueryString } from '../../../utils/http';
-import { dataActions } from '../reducer/dataSlice';
+import { fetchDataApi } from '../../api/data';
+import { generateQueryString } from '../../utils/http';
+import { dataActions } from './dataSlice';
 
 function* fetchData(action) {
   try {
@@ -67,7 +67,7 @@ export function* searchSaga() {
 }
 
 function* clearSearch() {
-  yield put(dataActions.searchClearSuccess())
+  yield put(dataActions.searchClearDone())
 }
 
 export function* clearSearchSaga() {

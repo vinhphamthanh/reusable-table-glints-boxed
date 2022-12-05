@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { memo } from 'react';
 
 const TableCell = styled.th`
 	text-transform: uppercase;
@@ -8,6 +9,8 @@ const TableCell = styled.th`
   padding: 5px;
 `
 
-export const TableHead = ({ item }) => (
+const TableHead = ({ item }) => (
   <TableCell title={item}>{item}</TableCell>
 );
+
+export default memo(TableHead)
