@@ -2,11 +2,13 @@ import {
   useCallback,
   useEffect,
   useState,
+  useMemo,
 } from 'react';
 import {
   useDispatch,
   useSelector,
 } from 'react-redux';
+import { sortBy } from 'lodash';
 import styled from 'styled-components';
 import Heading from './components/common/Heading';
 import Loading from './components/common/Loading';
@@ -29,6 +31,7 @@ function App() {
   const dispatch = useDispatch();
   const data = useSelector(state => state.data);
   const [page, setPage] = useState(1);
+  const [sortKey, setSortKey] = useState('')
 
   useEffect(() => {
     dispatch(dataActions.fetchDataStart({
@@ -47,12 +50,26 @@ function App() {
     dispatch(jsonActions.checkDataStart({ [index]: checked }))
   }
 
+  const displayData = useMemo(() => {
+    const currentData = data.isSearching ? data.searchData : data.data;
+
+    if (!sortKey) {
+      return currentData;
+    }
+
+    return sortBy(currentData, sortKey)
+  }, [sortKey, data.data, data.searchData, data.isSearching]);
+
+  const handleSort = name => {
+    setSortKey(() => name)
+  }
+
   return (
     <AppContainer>
       <GlobalStyle />
       <Heading>Custom Reusable Table - Glints - BOXED</Heading>
       <Search />
-      <Table data={data.data} searchData={data.searchData} onCheck={handleCheckData} />
+      <Table data={displayData} onCheck={handleCheckData} onSort={handleSort} />
       <Paging
         totalPage={data.totalPage}
         page={page}

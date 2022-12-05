@@ -19,21 +19,18 @@ const TableContainer = styled.table`
 
 export const Table = ({
   data,
-  searchData,
   onCheck,
+  onSort,
 }) => {
   const [headData, bodyData] = useMemo(() => {
     let dataHead = [], dataBody = [];
-    if (searchData.length > 0) {
-      dataHead = Object.keys(searchData[0]);
-      dataBody = searchData.map(datum => Object.values(datum));
-    } else if (data?.length > 0) {
+    if (data.length > 0) {
       dataHead = Object.keys(data[0]);
       dataBody = data.map(datum => Object.values(datum));
     }
 
     return [dataHead, dataBody];
-  }, [data, searchData]);
+  }, [data]);
 
   return (
     <WrappedContainer>
@@ -42,7 +39,7 @@ export const Table = ({
           <tr>
             <TableHead>''</TableHead>
             {headData?.length > 0 && headData.map(h => (
-              <TableHead key={nanoid()} item={h} />
+              <TableHead key={nanoid()} onSort={onSort} item={h} />
             ))}
           </tr>
         </thead>

@@ -9,8 +9,11 @@ const TableCell = styled.th`
   padding: 5px;
 `
 
-const TableHead = ({ item }) => (
-  <TableCell title={item}>{item}</TableCell>
-);
+const TableHead = ({ item, onSort }) => {
+  const handleSort = () => onSort(item)
+  return (
+    <TableCell title={item} onClick={handleSort}>{item}</TableCell>
+  );
+}
 
 export default memo(TableHead)
