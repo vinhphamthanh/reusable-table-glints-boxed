@@ -5,9 +5,9 @@ import {
 import { jsonActions } from './jsonSlice';
 
 function* checkData(action) {
-  yield put(jsonActions.checkDataDone(action.payload))
+  yield put(jsonActions.checkDataDone(action.payload));
 }
 
 export function* checkDataSaga() {
-  yield takeLatest(jsonActions.checkDataStart.toString(), checkData)
+  yield takeLatest(jsonActions.checkDataStart.toString(), checkData);
 }

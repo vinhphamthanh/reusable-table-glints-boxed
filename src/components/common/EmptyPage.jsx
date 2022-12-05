@@ -7,11 +7,11 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 export const EmptyPage = () => {
   return (
     <Container>
       <Heading small>There is no item. Please try again!</Heading>
     </Container>
-  )
-}
+  );
+};

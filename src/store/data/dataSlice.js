@@ -17,14 +17,19 @@ const dataSlice = createSlice({
       state.isSearching = false;
     },
     fetchDataSuccess(state, action) {
-      const { payload: { totalPage, data } } = action;
+      const {
+        payload: {
+          totalPage,
+          data,
+        },
+      } = action;
       state.loading = false;
       state.totalPage = totalPage;
       state.data = data;
     },
     fetchDataFailure(state, action) {
       state.loading = false;
-      state.error = action.payload
+      state.error = action.payload;
     },
     searchDataStart(state) {
       state.loading = true;
@@ -42,8 +47,8 @@ const dataSlice = createSlice({
       state.searchData = [];
       state.isSearching = false;
     },
-  }
-})
+  },
+});
 
 export const dataActions = dataSlice.actions;
 export default dataSlice.reducer;

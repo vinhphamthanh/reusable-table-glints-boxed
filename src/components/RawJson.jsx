@@ -13,7 +13,7 @@ const Container = styled.div`
 
 const Line = styled.p`
   font-size: 12px;
-	margin: 4px 0;
+  margin: 4px 0;
 `;
 const RawJson = ({ data }) => {
   const json = useSelector(state => state.json);

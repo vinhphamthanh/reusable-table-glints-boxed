@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { memo } from 'react';
+import styled from 'styled-components';
 
 const TData = styled.td`
   min-height: 32px;
@@ -7,6 +7,8 @@ const TData = styled.td`
   padding: 5px;
 `;
 
-const TableCell = ({ children }) => (<TData>{children}</TData>)
+const TableCell = ({ children }) => (
+  <TData>{children}</TData>
+);
 
-export default memo(TableCell)
+export default memo(TableCell);

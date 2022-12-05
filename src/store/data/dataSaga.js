@@ -67,9 +67,9 @@ export function* searchSaga() {
 }
 
 function* clearSearch() {
-  yield put(dataActions.searchClearDone())
+  yield put(dataActions.searchClearDone());
 }
 
 export function* clearSearchSaga() {
-  yield takeLatest(dataActions.searchClearStart.toString(), clearSearch)
+  yield takeLatest(dataActions.searchClearStart.toString(), clearSearch);
 }

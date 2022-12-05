@@ -34,4 +34,4 @@ const TableRow = ({
   </WrappedTableRow>
 );
 
-export default memo(TableRow)
+export default memo(TableRow);

@@ -7,20 +7,25 @@ const TableThead = styled.th`
   text-align: left;
   color: white;
   padding: 5px;
-  cursor: ${({ pointer }) => pointer ? 'pointer' : 'default'};
+  cursor: ${({ pointer }) => pointer ?
+          'pointer' :
+          'default'};
 `;
 
 const TableHead = ({
   item,
   onSort,
-  filter
+  filter,
 }) => {
   const handleSort = () => {
     onSort(item);
   };
 
   return (
-    <TableThead title={item} onClick={filter ? handleSort : () => {}} pointer={filter}>
+    <TableThead title={item} onClick={filter ?
+      handleSort :
+      () => {}} pointer={filter}
+    >
       {item}
       {filter && <span dangerouslySetInnerHTML={{ __html: '&blacktriangledown;' }} />}
     </TableThead>

@@ -8,18 +8,23 @@ const Title = styled.p`
       return `
         font-size: 20px;
         color: dodgerblue;
-      `
+      `;
     }
-    
+
     return `
       font-size: 28px;
       color: darkmagenta;
       margin: 0 0 2rem;
-    `
+    `;
   }};
   font-weight: bold;
-`
+`;
 
-const Heading = ({ children, small }) => (<Title small={small}>{children}</Title>)
+const Heading = ({
+  children,
+  small,
+}) => (
+  <Title small={small}>{children}</Title>
+);
 
 export default memo(Heading);
