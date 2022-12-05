@@ -32,7 +32,7 @@ const Clear = styled.button`
 	}
 	
 `
-const Search = () => {
+const Search = ({ onClear }) => {
   const dispatch = useDispatch();
   const [text, setText] = useState('')
   const handleChange = evt => {
@@ -43,11 +43,13 @@ const Search = () => {
   const handleClear = () => {
     setText(() => '')
     dispatch(dataActions.searchClearStart())
+    onClear();
   }
   const handleSubmit = evt => {
     evt.preventDefault();
     if (!text) return;
     dispatch(dataActions.searchDataStart({ q: text, type: DATA_TYPES.POSTS }))
+    onClear();
   }
 
   return (

@@ -13,6 +13,7 @@ const WrappedTableRow = styled.tr`
 
 const CheckBox = styled.input`
   margin: 0;
+  cursor: pointer;
 `;
 
 const TableRow = ({

@@ -37,9 +37,9 @@ export const Table = ({
       <TableContainer>
         <thead>
           <tr>
-            <TableHead>''</TableHead>
+            <TableHead filter={false}></TableHead>
             {headData?.length > 0 && headData.map(h => (
-              <TableHead key={nanoid()} onSort={onSort} item={h} />
+              <TableHead filter key={nanoid()} onSort={onSort} item={h} />
             ))}
           </tr>
         </thead>
