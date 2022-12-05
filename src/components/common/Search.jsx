@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { DATA_TYPES } from '../../constants/http';
 import { dataActions } from '../../store/data/reducer/dataSlice';
@@ -10,7 +10,7 @@ const Container = styled.form`
   border: 1px solid dodgerblue;
   border-radius: 4rem;
   padding: 4px 8px;
-  margin: 2em auto;
+  margin: 1em auto;
 `;
 
 const Input = styled.input`
@@ -32,7 +32,7 @@ const Clear = styled.button`
 	}
 	
 `
-export const Search = () => {
+const Search = () => {
   const dispatch = useDispatch();
   const [text, setText] = useState('')
   const handleChange = evt => {
@@ -57,3 +57,5 @@ export const Search = () => {
 		</Container>
   );
 };
+
+export default memo(Search)

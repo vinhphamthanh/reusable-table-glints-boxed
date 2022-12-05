@@ -2,8 +2,10 @@ import styled from 'styled-components';
 
 const TableCell = styled.th`
 	text-transform: uppercase;
-	padding: 5px 0;
-  border-bottom: 1px solid aliceblue;
+  background: dodgerblue;
+  text-align: left;
+  color: white;
+  padding: 5px;
 `
 
 export const TableHead = ({ item }) => (

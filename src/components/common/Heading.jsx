@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styled from 'styled-components';
 
 const Title = styled.p`
@@ -6,4 +7,9 @@ const Title = styled.p`
   font-weight: bold;
 `
 
-export const Heading = ({ children }) => (<Title>{children}</Title>)
+const Heading = ({ children }) => {
+  console.log('Rerender me????')
+  return (<Title>{children}</Title>)
+}
+
+export default memo(Heading);

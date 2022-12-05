@@ -1,5 +1,5 @@
 import { nanoid } from '@reduxjs/toolkit';
-import React from 'react';
+import { memo } from 'react';
 import styled from 'styled-components';
 import { Button } from './Button';
 
@@ -13,18 +13,25 @@ const Container = styled.div`
 `;
 
 const Page = styled.span`
-	min-width: 24px;
-	text-align: center;
-	font-size: 12px;
-	color: ${({ active }) => active ? 'red' : 'inherit'}
-`
-export const Paging = ({ onPaging, page, totalPage, isVisible }) => {
+  min-width: 24px;
+  text-align: center;
+  font-size: 12px;
+  color: ${({ active }) => active ?
+          'red' :
+          'inherit'}
+`;
+const Paging = ({
+  onPaging,
+  page,
+  totalPage,
+  isVisible,
+}) => {
   const handleBack = () => {
-    onPaging(-1)
-  }
+    onPaging(-1);
+  };
 
   const handleNext = () => {
-    onPaging(1)
+    onPaging(1);
   };
 
   return isVisible && (
@@ -37,3 +44,5 @@ export const Paging = ({ onPaging, page, totalPage, isVisible }) => {
 		</Container>
   );
 };
+
+export default memo(Paging);

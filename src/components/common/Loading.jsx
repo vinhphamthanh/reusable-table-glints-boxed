@@ -39,6 +39,8 @@ const Spin = styled.img`
 `
 
 
-export const Loading = ({ loading }) => {
+const Loading = ({ loading }) => {
   return loading ? <Overlay><Spin src={Logo} /></Overlay> : null;
 }
+
+export default React.memo(Loading)
