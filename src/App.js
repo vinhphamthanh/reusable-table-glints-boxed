@@ -15,6 +15,7 @@ import Heading from './components/common/Heading';
 import Loading from './components/common/Loading';
 import Paging from './components/common/Paging';
 import Search from './components/common/Search';
+import SwitchDataSource from './components/common/SwitchDataSource';
 import RawJson from './components/RawJson';
 import { Table } from './components/table/Table';
 import { ORDER_BY } from './constants/common';
@@ -32,6 +33,7 @@ const AppContainer = styled.div`
 function App() {
   const dispatch = useDispatch();
   const data = useSelector(state => state.data);
+  const [dataSource, setDataSource] = useState(DATA_TYPES.POSTS);
   const [page, setPage] = useState(1);
   const [sortKey, setSortKey] = useState('');
   const [orderType, setOrderType] = useState(ORDER_BY.desc);
@@ -39,18 +41,18 @@ function App() {
   useEffect(() => {
     dispatch(dataActions.fetchDataStart({
       query: { page },
-      type: DATA_TYPES.POSTS,
+      type: dataSource,
     }));
-  }, [dispatch, page]);
+  }, [dispatch, page, dataSource]);
 
-  const handleClearJsonData = () => {
+  const handleClearJsonData = useCallback(() => {
     dispatch(jsonActions.checkDataStart({}));
-  };
+  }, [dispatch]);
 
   const handlePaging = useCallback(step => {
     setPage(prev => prev + step);
     handleClearJsonData();
-  }, [dispatch, setPage]);
+  }, [setPage, handleClearJsonData]);
 
   const handleCheckData = index => evt => {
     const { checked } = evt.target;
@@ -75,11 +77,16 @@ function App() {
     handleClearJsonData();
   };
 
+  const handleDataTest = evt => {
+    const { value } = evt.target;
+    setDataSource(() => value)
+  }
   return (
     <AppContainer>
       <GlobalStyle />
       <Heading>Custom Reusable Table - Glints - BOXED</Heading>
-      <Search onClear={handleClearJsonData} />
+      <SwitchDataSource onSelect={handleDataTest} dataSource={dataSource} />
+      <Search onClear={handleClearJsonData} dataSource={dataSource} />
       {displayData.length === 0 && <EmptyPage />}
       {displayData.length > 0 && <Table
         data={displayData} onCheck={handleCheckData} onSort={handleSort}

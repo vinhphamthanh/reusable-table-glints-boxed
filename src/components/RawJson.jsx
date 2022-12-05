@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import Heading from './common/Heading';
 
 const Container = styled.div`
+  margin: 1em 0;
   display: flex;
   width: 100%;
   flex-direction: column;

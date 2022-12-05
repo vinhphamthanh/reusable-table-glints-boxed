@@ -1,6 +1,5 @@
 import { memo, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { DATA_TYPES } from '../../constants/http';
 import { dataActions } from '../../store/data/dataSlice';
 import styled from 'styled-components';
 
@@ -32,7 +31,7 @@ const Clear = styled.button`
 	}
 	
 `
-const Search = ({ onClear }) => {
+const Search = ({ onClear, dataSource }) => {
   const dispatch = useDispatch();
   const [text, setText] = useState('')
   const handleChange = evt => {
@@ -48,7 +47,7 @@ const Search = ({ onClear }) => {
   const handleSubmit = evt => {
     evt.preventDefault();
     if (!text) return;
-    dispatch(dataActions.searchDataStart({ q: text, type: DATA_TYPES.POSTS }))
+    dispatch(dataActions.searchDataStart({ q: text, type: dataSource }))
     onClear();
   }
 

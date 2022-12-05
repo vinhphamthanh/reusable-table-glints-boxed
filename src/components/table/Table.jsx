@@ -8,6 +8,7 @@ const WrappedContainer = styled.div`
   display: flex;
   flex-direction: column;
   column-gap: 32px;
+  margin: 0 0 1em;
 `
 
 const TableContainer = styled.table`

@@ -14,6 +14,7 @@ const Title = styled.p`
     return `
       font-size: 28px;
       color: darkmagenta;
+      margin: 0 0 2rem;
     `
   }};
   font-weight: bold;
