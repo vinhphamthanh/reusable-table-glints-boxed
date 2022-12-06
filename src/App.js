@@ -23,6 +23,7 @@ import { DATA_TYPES } from './constants/http';
 import { dataActions } from './store/data/dataSlice';
 import { jsonActions } from './store/json/jsonSlice';
 import { GlobalStyle } from './styles/global';
+import { INITIAL_PAGE } from './constants/common';
 
 const AppContainer = styled.div`
   display: flex;
@@ -34,7 +35,7 @@ function App() {
   const dispatch = useDispatch();
   const data = useSelector(state => state.data);
   const [dataSource, setDataSource] = useState(DATA_TYPES.POSTS);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(INITIAL_PAGE);
   const [sortKey, setSortKey] = useState('');
   const [orderType, setOrderType] = useState(ORDER_BY.desc);
 
@@ -79,8 +80,9 @@ function App() {
 
   const handleDataTest = evt => {
     const { value } = evt.target;
-    setDataSource(() => value)
-  }
+    setDataSource(() => value);
+    setPage(() => INITIAL_PAGE)
+  };
   return (
     <AppContainer>
       <GlobalStyle />
